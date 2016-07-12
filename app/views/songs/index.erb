@@ -6,17 +6,17 @@
 			<dd><%= song.title %></dd>
 			<dt>Author</dt>
 			<dd><%= song.author %></dd>
-			<% if song.url.nil? %>
+			<% unless song.url.empty? %>
 			    <dt>URL</dt>
 				<dd><a href="<%= song.url %>"><%= song.url %></a></dd>
 			<% end %>
 			<dt>Submitted by:</dt>
-			<dd><%= song.user.email %></dd>
+			<dd><%= song.user && song.user.email %></dd>
 		</dl>
 	</li>
 	<% end %>
 </ul>
 
-<a href="/songs/add" class="btn btn-success">Add Song</a>
+<a href="/songs/new" class="btn btn-success">Add Song</a>
 
 <a href="/users" class="btn btn-success">Home</a>
