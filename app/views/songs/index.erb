@@ -10,6 +10,8 @@
 			    <dt>URL</dt>
 				<dd><a href="<%= song.url %>"><%= song.url %></a></dd>
 			<% end %>
+			<dt>Submitted by:</dt>
+			<dd><%= song.user.email %></dd>
 		</dl>
 	</li>
 	<% end %>
