@@ -1,14 +1,18 @@
-<% @songs.each do |song| %>
-<dl class="song">
-	<dt>Title</dt>
-	<dd><%= song.title %></dd>
-	<dt>Author</dt>
-	<dd><%= song.author %></dd>
-	<% if song.url.nil? %>
-	    <dt>URL</dt>
-		<dd><a href="<%= song.url %>"><%= song.url %></a></dd>
+<ul class="tracks">
+	<% @songs.each do |song| %>
+	<li class="track">
+		<dl class="song">
+			<dt>Title</dt>
+			<dd><%= song.title %></dd>
+			<dt>Author</dt>
+			<dd><%= song.author %></dd>
+			<% if song.url.nil? %>
+			    <dt>URL</dt>
+				<dd><a href="<%= song.url %>"><%= song.url %></a></dd>
+			<% end %>
+		</dl>
+	</li>
 	<% end %>
-	
-</dl>
-<% end %>
-<a href="/songs/new">Add a new song!</a>
+</ul>
+
+<footer><a href="/songs/new">Add a new song!</a></footer>

@@ -1,0 +1,9 @@
+dl dt,dl dd, .track {
+	display: inline-block;
+}
+
+.track {
+	padding: 1em;
+	margin: 1em;
+	border: 1px solid;
+}
