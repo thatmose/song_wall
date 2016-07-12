@@ -3,6 +3,24 @@ get "/" do
   erb :index
 end
 
+get "/registrations/signup" do
+  erb :"/registrations/signup"
+end
+
+post "/registrations" do
+  @user = User.new(email: params[:email])
+  @user.password = params[:password]
+  if @user.save
+    redirect "/users"
+  else
+    erb :"registrations/signup"
+  end
+end
+
+get "/users" do
+  erb :"/users/home"
+end
+
 get "/songs" do
   @songs = Song.all
   erb :"songs/index"
