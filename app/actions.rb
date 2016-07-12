@@ -33,6 +33,11 @@ get "/sessions/login" do
   erb :"/sessions/login"
 end
 
+get "/sessions/logout" do
+  session.clear
+  redirect "/"
+end
+
 post "/sessions" do
   @user = User.find_by_email(params[:email])
   if @user && @user.password == params[:password]
@@ -44,7 +49,7 @@ post "/sessions" do
 end
 
 get "/users" do
-  @current_user
+  current_user
   erb :"/users/index"
 end
 
