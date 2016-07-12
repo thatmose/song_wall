@@ -3,4 +3,5 @@ class Song < ActiveRecord::Base
   validates :author, presence: true
   # validates :url
   belongs_to :user
+  has_many :votes
 end
