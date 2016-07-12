@@ -5,6 +5,8 @@ class User < ActiveRecord::Base
 
   validates :email, uniqueness: true
 
+  has_many :songs
+
   def password
     @password ||= Password.new(password_hash)
   end
