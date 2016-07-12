@@ -1,8 +1,14 @@
 <% @songs.each do |song| %>
-<div class = "song">
-	<h3><%= song.title %></h3>
-	<h4><%= song.author %></h4>
-	<h4><%= song.url %></h4>
-</div>
+<dl class="song">
+	<dt>Title</dt>
+	<dd><%= song.title %></dd>
+	<dt>Author</dt>
+	<dd><%= song.author %></dd>
+	<% if song.url.nil? %>
+	    <dt>URL</dt>
+		<dd><a href="<%= song.url %>"><%= song.url %></a></dd>
+	<% end %>
+	
+</dl>
 <% end %>
 <a href="/songs/new">Add a new song!</a>
