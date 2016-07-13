@@ -29,7 +29,8 @@ post "/registrations" do
   @user = User.new(email: params[:email])
   @user.password = params[:password]
   if @user.save!
-    redirect "/users"
+    puts "Account created!"
+    redirect "/sessions/login"
   else
     erb :"registrations/signup"
   end
@@ -60,7 +61,7 @@ get "/users" do
 end
 
 get "/songs" do
-  @songs = Song.all
+  @songs = Song.all.order(num_upvotes: :desc)
   erb :"songs/index"
 end
 
@@ -88,6 +89,8 @@ post "/upvote" do
       user_id: current_user.id,
       upvote: true)
       if @vote.save!
+        @vote.song.num_upvotes += 1
+        @vote.song.save!
         puts "Saved"
         redirect "/songs"
       else
