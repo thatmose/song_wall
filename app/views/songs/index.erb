@@ -12,6 +12,14 @@
 			<% end %>
 			<dt>Submitted by:</dt>
 			<dd><%= song.user && song.user.email %></dd>
+			<dt>Votes:</dt>
+			<dd><%= song.votes.where(upvote: true).count %></dd>
+			<form action="upvote" method="POST">
+				<input type="hidden" name ="song_id" value="<%= song.id %>">
+				<button type="submit" class="btn btn-default" aria-label="Left Align">
+					<span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+				</button> 
+			</form>
 		</dl>
 	</li>
 	<% end %>

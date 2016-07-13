@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160712233209) do
+ActiveRecord::Schema.define(version: 20160713023936) do
 
   create_table "songs", force: :cascade do |t|
     t.string   "title"
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20160712233209) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
+    t.integer  "num_upvotes"
     t.index ["user_id"], name: "index_songs_on_user_id"
   end
 

@@ -8,6 +8,12 @@ helpers do
   def logged_in?
     current_user != nil
   end
+
+  def can_vote?
+    result = Vote.where("song_id = ? AND user_id = ?",params[:song_id],current_user.id)
+    p result.empty?
+    result.empty?
+  end
 end
 
 # Homepage (Root path)
@@ -42,7 +48,7 @@ post "/sessions" do
   @user = User.find_by_email(params[:email])
   if @user && @user.password == params[:password]
     session[:user_id] = @user.id 
-    redirect :"/users"
+    redirect "/users"
   else
     erb :"/sessions/login"
   end
@@ -72,5 +78,24 @@ post "/songs" do
     redirect "/songs"
   else
     erb :"songs/new"
+  end
+end
+
+post "/upvote" do
+  if can_vote?
+    @vote = Vote.new(
+      song_id: params[:song_id],
+      user_id: current_user.id,
+      upvote: true)
+      if @vote.save!
+        puts "Saved"
+        redirect "/songs"
+      else
+        puts "Bad"
+        redirect "/songs"
+      end
+    else
+      puts "Sorry but you already voted"
+      redirect "/songs"
   end
 end
